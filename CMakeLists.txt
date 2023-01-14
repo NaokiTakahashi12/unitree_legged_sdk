@@ -1,8 +1,16 @@
+if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
+  message(FATAL_ERROR "Please Out-source build")
+endif()
+
 cmake_minimum_required(VERSION 3.8.0)
 project(unitree_legged_sdk
   VERSION 3.8.0
   LANGUAGES CXX
 )
+
+if(NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
+  message(FATAL_ERROR "No support CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
+endif()
 
 option(unitree_legged_sdk_USE_STATIC_LIBRARY "Use statically linked library" FALSE)
 option(unitree_legged_sdk_BUILD_EXAMPLES "Build example executables" TRUE)
