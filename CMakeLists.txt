@@ -44,79 +44,45 @@ set_target_properties(unitree_legged_sdk
 
 if(unitree_legged_sdk_BUILD_EXAMPLES)
   # one pc one process
-  add_executable(example_position example/example_position.cpp)
-  target_link_libraries(example_position
-    PUBLIC
-      Threads::Threads
-      unitree_legged_sdk
+  function(add_example_executable executable_name)
+    cmake_parse_arguments(example_executable "" "" "SOURCES" ${ARGN})
+    add_executable(${executable_name}
+        ${example_executable_SOURCES}
+    )
+    target_link_libraries(${executable_name}
+      PUBLIC
+        Threads::Threads
+        unitree_legged_sdk
+    )
+    target_compile_features(${executable_name}
+      PUBLIC
+        cxx_std_14
+    )
+    set_target_properties(${executable_name}
+      PROPERTIES
+        VERSION ${PROJECT_VERSION}
+    )
+  endfunction()
+
+  add_example_executable(example_position
+    SOURCES
+      example/example_position.cpp
   )
-  target_compile_features(example_position
-    PUBLIC
-      cxx_std_14
+  add_example_executable(example_velocity
+    SOURCES
+      example/example_velocity.cpp
   )
-  set_target_properties(example_position
-    PROPERTIES
-      VERSION ${PROJECT_VERSION}
+  add_example_executable(example_torque
+    SOURCES
+      example/example_torque.cpp
   )
-  
-  add_executable(example_velocity example/example_velocity.cpp)
-  target_link_libraries(example_velocity
-    PUBLIC
-      Threads::Threads
-      unitree_legged_sdk
+  add_example_executable(example_walk
+    SOURCES
+      example/example_walk.cpp
   )
-  target_compile_features(example_velocity
-    PUBLIC
-      cxx_std_14
-  )
-  set_target_properties(example_velocity
-    PROPERTIES
-      VERSION ${PROJECT_VERSION}
-  )
-  
-  add_executable(example_torque example/example_torque.cpp)
-  target_link_libraries(example_torque
-    PUBLIC
-      Threads::Threads
-      unitree_legged_sdk
-  )
-  target_compile_features(example_torque
-    PUBLIC
-      cxx_std_14
-  )
-  set_target_properties(example_torque
-    PROPERTIES
-      VERSION ${PROJECT_VERSION}
-  )
-  
-  add_executable(example_walk example/example_walk.cpp)
-  target_link_libraries(example_walk
-    PUBLIC
-      Threads::Threads
-      unitree_legged_sdk
-  )
-  target_compile_features(example_walk
-    PUBLIC
-      cxx_std_14
-  )
-  set_target_properties(example_walk
-    PROPERTIES
-      VERSION ${PROJECT_VERSION}
-  )
-  
-  add_executable(example_joystick example/example_joystick.cpp)
-  target_link_libraries(example_joystick
-    PUBLIC
-      Threads::Threads
-      unitree_legged_sdk
-  )
-  target_compile_features(example_joystick
-    PUBLIC
-      cxx_std_14
-  )
-  set_target_properties(example_joystick
-    PROPERTIES
-      VERSION ${PROJECT_VERSION}
+  add_example_executable(example_joystick
+    SOURCES
+      example/example_joystick.cpp
   )
 endif()
 
