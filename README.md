@@ -22,10 +22,9 @@ firmware H0.1.7 >= v0.1.35
 
 ### Build
 ```bash
-mkdir build
-cd build
-cmake ../
-make
+$ cmake -S . -B build
+$ cmake --build build
+$ cmake --install build
 ```
 
 ### Run
@@ -36,3 +35,23 @@ Run examples with 'sudo' for memory locking.
 #### Python
 ##### arm
 change `sys.path.append('../lib/python/amd64')` to `sys.path.append('../lib/python/arm64')`
+
+### SDK usage
+#### C++
+You can link to it by adding the following to your `CMakeLists.txt`.
+
+```CMakeLists.txt
+...
+find_package(UnitreeLeggedSDK REQUIRED)
+target_link_libraries(<your cool library or executable>
+  PUBLIC
+    UnitreeLeggedSDK::UnitreeLeggedSDK
+)
+...
+```
+
+You can include the following in your C++ source.
+
+```cpp
+#include <unitree_legged_sdk/unitree_legged_sdk.h>
+```
