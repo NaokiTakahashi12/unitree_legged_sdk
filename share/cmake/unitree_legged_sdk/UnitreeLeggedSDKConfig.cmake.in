@@ -33,14 +33,15 @@ set(UnitreeLeggedSDK_LIBRARIES
   ${UnitreeLeggedSDK_LIBRARY}
 )
 
-add_library(UnitreeLeggedSDK::UnitreeLeggedSDK STATIC IMPORTED)
+add_library(UnitreeLeggedSDK::UnitreeLeggedSDK UNKNOWN IMPORTED)
 set_target_properties(UnitreeLeggedSDK::UnitreeLeggedSDK
   PROPERTIES
     IMPORTED_LOCATION ${UnitreeLeggedSDK_LIBRARY}
     INTERFACE_INCLUDE_DIRECTORIES "${UnitreeLeggedSDK_INCLUDE_DIRS}"
 )
 target_link_libraries(UnitreeLeggedSDK::UnitreeLeggedSDK
-  ${Boost_LIBRARIES}
+  INTERFACE
+    ${Boost_LIBRARIES}
 )
 target_include_directories(UnitreeLeggedSDK::UnitreeLeggedSDK
   INTERFACE
