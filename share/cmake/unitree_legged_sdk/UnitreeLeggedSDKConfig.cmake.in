@@ -9,6 +9,7 @@ find_path(UnitreeLeggedSDK_INCLUDE_DIR unitree_legged_sdk/unitree_legged_sdk.h
     $ENV{UNITREE_LEGGED_SDK_INCLUDE_PATH}
     $ENV{UNITREE_LEGGED_SDK_PATH}/include
     $ENV{HOME}/.local/include
+    ${CMAKE_INSTALL_PREFIX}/include
     /usr/local/include
     /usr/include
 )
@@ -20,6 +21,7 @@ find_library(UnitreeLeggedSDK_LIBRARY unitree_legged_sdk
     /usr/local/lib
     /usr/lib
     $ENV{HOME}/.local/lib/unitree
+    ${CMAKE_INSTALL_PREFIX}/lib/unitree
     /usr/local/lib/unitree
     /usr/lib/unitree
 )
