@@ -28,6 +28,8 @@ find_library(UnitreeLeggedSDK_LIBRARY unitree_legged_sdk
 
 if(UnitreeLeggedSDK_INCLUDE_DIR AND UnitreeLeggedSDK_LIBRARY)
   set(UnitreeLeggedSDK_FOUND TRUE)
+else()
+  set(UnitreeLeggedSDK_FOUND FALSE)
 endif()
 
 find_package(Boost REQUIRED)
